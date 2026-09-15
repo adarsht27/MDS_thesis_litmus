@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupyter Notebook — generated with runcell</title>
+    <meta name="description" content="Exported with runcell — convert .ipynb notebooks to HTML or PDF anytime at runcell.dev." />
+    <meta name="generator" content="runcell" />
+    <style>
+        :root {
+            --jp-code-font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+            --jp-content-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            --jp-cell-prompt-width: 64px;
+            --jp-input-prompt-color: #307fc1;
+            --jp-output-prompt-color: #bf5b3d;
+            --jp-cell-input-bg: #f7f7f7;
+            --jp-layout-color0: #ffffff;
+            --jp-layout-color1: #f7f7f7;
+            --jp-border-color1: #e0e0e0;
+            --jp-content-font-color0: #000000;
+            --jp-content-font-color1: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--jp-content-font-family);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--jp-content-font-color0);
+            background-color: var(--jp-layout-color0);
+            margin: 0;
+            padding: 0;
+        }
+
+        .notebook-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cell structure */
+        .cell {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .cell-prompt {
+            min-width: var(--jp-cell-prompt-width);
+            width: var(--jp-cell-prompt-width);
+            font-family: var(--jp-code-font-family);
+            font-size: 12px;
+            padding: 10px 8px 10px 0;
+            text-align: right;
+            flex-shrink: 0;
+            user-select: none;
+        }
+
+        .cell-content {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        /* Input prompt styling - Jupyter blue */
+        .input-prompt {
+            color: var(--jp-input-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Output prompt styling - Jupyter red/orange */
+        .output-prompt {
+            color: var(--jp-output-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Code cell input area */
+        .input-area {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            overflow-x: auto;
+        }
+
+        .input-area pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Output area */
+        .output-area {
+            margin-top: 0;
+        }
+
+        .output-wrapper {
+            display: flex;
+            flex-direction: row;
+            margin-top: 4px;
+        }
+
+        .output-content {
+            flex: 1;
+            min-width: 0;
+            padding: 8px 0;
+        }
+
+        .output-content pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Stream output (stdout/stderr) */
+        .output-stream {
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .output-stderr {
+            background-color: #fdd;
+            padding: 8px 12px;
+            border-radius: 2px;
+        }
+
+        /* Execute result / display data */
+        .output-result {
+            padding: 4px 0;
+        }
+
+        .output-result pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+        }
+
+        /* Image output */
+        .output-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* HTML output (DataFrames, etc.) */
+        .output-html {
+            overflow-x: auto;
+        }
+
+        .output-html table {
+            border-collapse: collapse;
+            font-size: 13px;
+            font-family: var(--jp-content-font-family);
+        }
+
+        .output-html table th,
+        .output-html table td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .output-html table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+
+        .output-html table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* Error output */
+        .output-error {
+            background-color: #fff0f0;
+            padding: 8px 12px;
+            border-radius: 2px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Markdown cell styling */
+        .markdown-cell {
+            padding: 10px 0;
+        }
+
+        .markdown-cell h1 {
+            font-size: 2em;
+            font-weight: 600;
+            margin: 0.67em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 0.83em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin: 1em 0;
+        }
+
+        .markdown-cell h4 {
+            font-size: 1em;
+            font-weight: 600;
+            margin: 1.33em 0;
+        }
+
+        .markdown-cell h5 {
+            font-size: 0.875em;
+            font-weight: 600;
+            margin: 1.67em 0;
+        }
+
+        .markdown-cell h6 {
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2.33em 0;
+            color: #6a737d;
+        }
+
+        .markdown-cell p {
+            margin: 0 0 16px 0;
+            line-height: 1.6;
+        }
+
+        .markdown-cell code {
+            font-family: var(--jp-code-font-family);
+            font-size: 85%;
+            background-color: rgba(27, 31, 35, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        .markdown-cell pre {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 3px;
+            padding: 16px;
+            overflow-x: auto;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+
+        .markdown-cell pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 100%;
+        }
+
+        .markdown-cell blockquote {
+            margin: 0 0 16px 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 4px solid #dfe2e5;
+        }
+
+        .markdown-cell ul,
+        .markdown-cell ol {
+            margin: 0 0 16px 0;
+            padding-left: 2em;
+        }
+
+        .markdown-cell li {
+            margin: 0.25em 0;
+        }
+
+        .markdown-cell a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .markdown-cell a:hover {
+            text-decoration: underline;
+        }
+
+        .markdown-cell hr {
+            border: 0;
+            border-top: 1px solid var(--jp-border-color1);
+            margin: 24px 0;
+        }
+
+        .markdown-cell img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .markdown-cell table {
+            border-collapse: collapse;
+            margin: 0 0 16px 0;
+        }
+
+        .markdown-cell table th,
+        .markdown-cell table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+
+        .markdown-cell table th {
+            font-weight: 600;
+            background-color: #f6f8fa;
+        }
+
+        .markdown-cell table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+
+        /* Raw cell styling */
+        .raw-cell {
+            background-color: var(--jp-layout-color1);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Empty prompt placeholder */
+        .prompt-empty {
+            color: transparent;
+        }
+
+        .export-footer {
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--jp-border-color1);
+            color: #555;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .export-footer a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .export-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook-container">
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Item validity in translated LLM benchmarks</h1><br><br><strong>Pilot analysis — MDS thesis, Hertie School</strong><br>Adarsh Tripathi<br><br>Most evaluation of language models outside English uses benchmarks written in English and then translated. The usual worry is translation <em>quality</em>: does the translation say what the original said? This notebook looks at a different failure, one that survives a perfectly good translation.<br><br>Take item <code>electrical_engineering/test/17</code> from Global-MMLU. The English asks what GAL abbreviates in digital logic design. The options are <em>General Advance Logic</em>, <em>General Array Logic</em>, <em>Generic Advance Logic</em> and <em>Generic Array Logic</em>. The question works because English separates "General" from "Generic". Hindi uses one word, सामान्य, for both. In the Hindi version, option A is character-identical to C, and B to D.<br><br>Nobody made a mistake. The Hindi is correct. The question cannot exist in Hindi, because it rests on a distinction Hindi does not draw.<br><br>This notebook detects two failures of that kind across the English, Hindi and German subsets, and reports what the detection can and cannot see.</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Setup</h2><br><br>The detectors live in [<code>itemvalidity/detectors.py</code>](../itemvalidity/detectors.py) rather than in this notebook, so there is one source of truth for the logic. This cell is safe to re-run.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [1]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import os
+import subprocess
+import sys
+
+REPO_URL = "https://github.com/adarsht27/MDS_thesis_litmus.git"
+REPO_DIR = "MDS_thesis_litmus"
+
+# Only clone when running somewhere that does not already have the code,
+# e.g. Colab. Running locally inside the repo, both steps are skipped.
+if not os.path.isdir(os.path.join(REPO_DIR, "itemvalidity")) and not os.path.isdir("itemvalidity"):
+    subprocess.run(["pip", "install", "-q", "datasets", "pandas", "pyarrow"], check=True)
+    subprocess.run(["git", "clone", "-q", REPO_URL], check=True)
+
+if os.path.isdir(os.path.join(REPO_DIR, "itemvalidity")):
+    os.chdir(REPO_DIR)
+
+sys.path.insert(0, os.getcwd())
+print("working directory:", os.getcwd())</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">working directory: /content/MDS_thesis_litmus
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [2]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import pandas as pd
+
+from itemvalidity.detectors import compare_to_source, flag_items, summarise
+from run_audit import load_language
+
+pd.set_option("display.width", 140)
+pd.set_option("display.max_columns", 40)
+
+DATASET = "CohereLabs/Global-MMLU"
+SPLIT = "test"
+SOURCE = "en"
+LANGUAGES = ["en", "hi", "de"]</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>What is being detected</h2><br><br><strong>Answer disclosure.</strong> The text of the correct option appears inside the question stem, so the item can be answered by matching strings rather than by knowing the fact. This is a property of the item, visible in the dataset, and is distinct from <em>data contamination</em>, where test items appear in a model's training data.<br><br><strong>Option collapse.</strong> Two or more options normalise to the same string, so the item has no unique correct answer.<br><br>Each has a severity level. Disclosure counts as <em>informative</em> only when exactly one option appears in the stem, since an item naming several of its own options gives nothing away. Collapse becomes <em>key corruption</em> when the duplication involves the correct option, at which point the item is unanswerable and the answer key points at the wrong string.<br><br>Both detectors first apply Unicode NFC normalisation. Some characters can be stored in more than one way: the Devanagari letter क़ may be a single code point, or क followed by a separate nukta mark. They look identical and compare as unequal. Without this step the detectors would miss real duplicates in Indic scripts while catching them in Latin ones, which would make any cross-language comparison meaningless.</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Load and flag</h2><br><br>14,042 items per language, aligned across languages by <code>sample_id</code>.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [3]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>frames = {
+    lang: flag_items(load_language(DATASET, lang, SPLIT))
+    for lang in LANGUAGES
+}
+
+source = frames[SOURCE]
+targets = [lang for lang in LANGUAGES if lang != SOURCE]
+
+print(f"items per language: {len(source)}")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>README.md:   0%|          | 0.00/53.3k [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>en/test-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B / 3.91MB            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>en/test-00000-of-00001.parquet: downloading bytes:           |  0.00B            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>en/dev-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B / 90.6kB            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>en/dev-00000-of-00001.parquet: downloading bytes:           |  0.00B            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Generating test split:   0%|          | 0/14042 [00:00&lt;?, ? examples/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Generating dev split:   0%|          | 0/285 [00:00&lt;?, ? examples/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>hi/test-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B / 6.14MB            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>hi/test-00000-of-00001.parquet: downloading bytes:           |  0.00B            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>hi/dev-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  127kB            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>hi/dev-00000-of-00001.parquet: downloading bytes:           |  0.00B            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Generating test split:   0%|          | 0/14042 [00:00&lt;?, ? examples/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Generating dev split:   0%|          | 0/285 [00:00&lt;?, ? examples/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>de/test-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B / 4.54MB            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>de/test-00000-of-00001.parquet: downloading bytes:           |  0.00B            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>de/dev-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  101kB            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>de/dev-00000-of-00001.parquet: downloading bytes:           |  0.00B            </pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Generating test split:   0%|          | 0/14042 [00:00&lt;?, ? examples/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Generating dev split:   0%|          | 0/285 [00:00&lt;?, ? examples/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">items per language: 14042
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Flag counts and rates</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [4]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>summarise(frames).style.format({
+    "answer_disclosed_rate": "{:.2%}",
+    "informative_disclosure_rate": "{:.2%}",
+    "collapse_rate": "{:.2%}",
+    "key_corrupted_rate": "{:.2%}",
+})</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt">Out[4]:</div>
+                        <div class="output-content">
+                            <div class="output-html"><style type="text/css">
+</style>
+<table id="T_5e2d3" class="dataframe">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_5e2d3_level0_col0" class="col_heading level0 col0" >items</th>
+      <th id="T_5e2d3_level0_col1" class="col_heading level0 col1" >answer_disclosed</th>
+      <th id="T_5e2d3_level0_col2" class="col_heading level0 col2" >answer_disclosed_rate</th>
+      <th id="T_5e2d3_level0_col3" class="col_heading level0 col3" >informative_disclosure</th>
+      <th id="T_5e2d3_level0_col4" class="col_heading level0 col4" >informative_disclosure_rate</th>
+      <th id="T_5e2d3_level0_col5" class="col_heading level0 col5" >collapse</th>
+      <th id="T_5e2d3_level0_col6" class="col_heading level0 col6" >collapse_rate</th>
+      <th id="T_5e2d3_level0_col7" class="col_heading level0 col7" >key_corrupted</th>
+      <th id="T_5e2d3_level0_col8" class="col_heading level0 col8" >key_corrupted_rate</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >language</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+      <th class="blank col4" >&nbsp;</th>
+      <th class="blank col5" >&nbsp;</th>
+      <th class="blank col6" >&nbsp;</th>
+      <th class="blank col7" >&nbsp;</th>
+      <th class="blank col8" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_5e2d3_level0_row0" class="row_heading level0 row0" >en</th>
+      <td id="T_5e2d3_row0_col0" class="data row0 col0" >14042</td>
+      <td id="T_5e2d3_row0_col1" class="data row0 col1" >81</td>
+      <td id="T_5e2d3_row0_col2" class="data row0 col2" >0.58%</td>
+      <td id="T_5e2d3_row0_col3" class="data row0 col3" >40</td>
+      <td id="T_5e2d3_row0_col4" class="data row0 col4" >0.28%</td>
+      <td id="T_5e2d3_row0_col5" class="data row0 col5" >14</td>
+      <td id="T_5e2d3_row0_col6" class="data row0 col6" >0.10%</td>
+      <td id="T_5e2d3_row0_col7" class="data row0 col7" >7</td>
+      <td id="T_5e2d3_row0_col8" class="data row0 col8" >0.05%</td>
+    </tr>
+    <tr>
+      <th id="T_5e2d3_level0_row1" class="row_heading level0 row1" >hi</th>
+      <td id="T_5e2d3_row1_col0" class="data row1 col0" >14042</td>
+      <td id="T_5e2d3_row1_col1" class="data row1 col1" >57</td>
+      <td id="T_5e2d3_row1_col2" class="data row1 col2" >0.41%</td>
+      <td id="T_5e2d3_row1_col3" class="data row1 col3" >31</td>
+      <td id="T_5e2d3_row1_col4" class="data row1 col4" >0.22%</td>
+      <td id="T_5e2d3_row1_col5" class="data row1 col5" >56</td>
+      <td id="T_5e2d3_row1_col6" class="data row1 col6" >0.40%</td>
+      <td id="T_5e2d3_row1_col7" class="data row1 col7" >26</td>
+      <td id="T_5e2d3_row1_col8" class="data row1 col8" >0.19%</td>
+    </tr>
+    <tr>
+      <th id="T_5e2d3_level0_row2" class="row_heading level0 row2" >de</th>
+      <td id="T_5e2d3_row2_col0" class="data row2 col0" >14042</td>
+      <td id="T_5e2d3_row2_col1" class="data row2 col1" >71</td>
+      <td id="T_5e2d3_row2_col2" class="data row2 col2" >0.51%</td>
+      <td id="T_5e2d3_row2_col3" class="data row2 col3" >40</td>
+      <td id="T_5e2d3_row2_col4" class="data row2 col4" >0.28%</td>
+      <td id="T_5e2d3_row2_col5" class="data row2 col5" >37</td>
+      <td id="T_5e2d3_row2_col6" class="data row2 col6" >0.26%</td>
+      <td id="T_5e2d3_row2_col7" class="data row2 col7" >22</td>
+      <td id="T_5e2d3_row2_col8" class="data row2 col8" >0.16%</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><strong>The English source is itself defective.</strong> Disclosures and collapses exist before any translation. Every translated version inherits this floor and then adds its own. This places the work alongside MMLU-redux (Gema et al., 2024), which audited the English version and stopped there.</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>What the translation introduced</h2><br><br><code>added</code> counts items clean in English and flagged in the target language. <code>removed</code> counts the reverse.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [5]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>for lang in targets:
+    print(f"\n{lang}")
+    print(compare_to_source(source, frames[lang])[["added", "removed"]].to_string())</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">
+hi
+                        added  removed
+flag                                  
+answer_disclosed           11       35
+informative_disclosure     11       20
+collapse                   42        0
+key_corrupted              19        0
+
+de
+                        added  removed
+flag                                  
+answer_disclosed           12       22
+informative_disclosure      9        9
+collapse                   23        0
+key_corrupted              15        0
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">Two things to read out of this, and they are not symmetrical.<br><br><strong>No collapses are removed.</strong> That is structural rather than lucky: translation can merge two distinct options but cannot separate two already merged, so collapse only accumulates.<br><br><strong>Disclosures appear to fall after translation, and that should not be believed.</strong> Two unrelated languages both cleaning up disclosure is not plausible. Exact matching succeeds in English, where the stem word and the standalone option are the same string, and fails in inflected languages where the stem uses a different form. The <code>removed</code> column here is the detector going blind, not the data getting better.</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>By subject category</h2><br><br>The comparison below is the reason the sensitivity problem matters.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [6]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>for lang, frame in frames.items():
+    print(f"\n{lang}")
+    print(
+        frame.groupby("subject_category")[
+            ["informative_disclosure", "collapse", "key_corrupted"]
+        ].agg(["sum", "count"]).to_string()
+    )</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">
+en
+                 informative_disclosure       collapse       key_corrupted      
+                                    sum count      sum count           sum count
+subject_category                                                                
+Business                              0   719        1   719             0   719
+Humanities                           13  4705        2  4705             2  4705
+Medical                               2  1505        0  1505             0  1505
+Other                                 4   883        1   883             0   883
+STEM                                 20  3153        7  3153             3  3153
+Social Sciences                       1  3077        3  3077             2  3077
+
+hi
+                 informative_disclosure       collapse       key_corrupted      
+                                    sum count      sum count           sum count
+subject_category                                                                
+Business                              0   719        4   719             1   719
+Humanities                           10  4705       16  4705             8  4705
+Medical                               2  1505        4  1505             1  1505
+Other                                 3   883        6   883             2   883
+STEM                                 16  3153       17  3153             9  3153
+Social Sciences                       0  3077        9  3077             5  3077
+
+de
+                 informative_disclosure       collapse       key_corrupted      
+                                    sum count      sum count           sum count
+subject_category                                                                
+Business                              0   719        2   719             0   719
+Humanities                           17  4705        6  4705             6  4705
+Medical                               2  1505        3  1505             1  1505
+Other                                 5   883        1   883             0   883
+STEM                                 15  3153       17  3153            10  3153
+Social Sciences                       1  3077        8  3077             5  3077
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">In the Humanities category, detected disclosures fall from 0.64% in English to 0.55% in German but to 0.28% in Hindi. Detection degrades with morphological distance from English, so counts produced this way are not merely noisy: they are biased against exactly the languages most likely to be of concern.<br><br>Quantifying that shortfall needs a reader competent in the target language, and is the next stage of the thesis rather than something this notebook can settle.</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Worked examples</h2><br><br>A rate is not evidence until the flagged items have been read. These are items the translation broke.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [7]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>def show(item_id, lang, n_options=4):
+    """Print one item side by side in English and the target language."""
+    target = frames[lang]
+    columns = [f"option_{c}" for c in "abcd"][:n_options]
+    print(f"{item_id}  [{target.at[item_id, 'subject']}]  answer={target.at[item_id, 'answer']}")
+    print(f"  EN  Q: {source.at[item_id, 'question']}")
+    for column in columns:
+        print(f"    EN  {column[-1]}: {source.at[item_id, column]}")
+    print(f"  {lang.upper()}  Q: {target.at[item_id, 'question']}")
+    for column in columns:
+        print(f"    {lang.upper()}  {column[-1]}: {target.at[item_id, column]}")
+    print()
+
+
+for item_id in ["elementary_mathematics/test/238", "high_school_macroeconomics/test/85"]:
+    show(item_id, "de")
+
+for item_id in ["electrical_engineering/test/17", "conceptual_physics/test/113"]:
+    show(item_id, "hi")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">elementary_mathematics/test/238  [elementary_mathematics]  answer=D
+  EN  Q: Divide. 7,285 ÷ 4
+    EN  a: 1,801
+    EN  b: 1,801 R1
+    EN  c: 1,821
+    EN  d: 1,821 R1
+  DE  Q: Teile 7.285 : 4
+    DE  a: 1.801
+    DE  b: 1.801 R1
+    DE  c: 1.821
+    DE  d: 1.801 R1
+
+high_school_macroeconomics/test/85  [high_school_macroeconomics]  answer=B
+  EN  Q: A nation that must consistently borrow to cover annual budget deficits risks
+    EN  a: a depreciation of the nation's currency as foreigners increase investment in the nation.
+    EN  b: a decline in net exports as the nation's goods become more expensive to foreign consumers.
+    EN  c: lower interest rates that discourage foreign investment in the nation.
+    EN  d: an appreciation of the nation's currency as foreigners decrease investment in the nation.
+  DE  Q: Eine Nation, die ständig Kredite aufnehmen muss, um jährliche Haushaltsdefizite zu decken, riskiert
+    DE  a: eine Abwertung der Landeswährung, da Ausländer verstärkt in die Nation investieren.
+    DE  b: eine Abwertung der Landeswährung, da Ausländer verstärkt in die Nation investieren.
+    DE  c: niedrigere Zinssätze, die ausländische Investitionen in der Nation abschrecken.
+    DE  d: eine Aufwertung der Landeswährung, da Ausländer weniger in die Nation investieren.
+
+electrical_engineering/test/17  [electrical_engineering]  answer=D
+  EN  Q: In Digital Logic Designs, GAL is abbreviated as
+    EN  a: General Advance Logic
+    EN  b: General Array Logic
+    EN  c: Generic Advance Logic
+    EN  d: Generic Array Logic
+  HI  Q: डिजिटल लॉजिक डिज़ाइन में, GAL को संक्षिप्त रूप में लिखा गया है
+    HI  a: सामान्य अग्रिम तर्क
+    HI  b: सामान्य सरणी तर्क
+    HI  c: सामान्य अग्रिम तर्क
+    HI  d: सामान्य सरणी तर्क
+
+conceptual_physics/test/113  [conceptual_physics]  answer=B
+  EN  Q: The time it takes for a pendulum swinging to and fro refers to its
+    EN  a: frequency
+    EN  b: period
+    EN  c: wavelength
+    EN  d: amplitude
+  HI  Q: पेंडुलम को आगे-पीछे घूमने में लगने वाला समय इसकी गति को दर्शाता है
+    HI  a: आवृत्ति
+    HI  b: समय
+    HI  c: तरंग दैर्ध्य
+    HI  d: आयाम
+
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><strong>Arithmetic, German.</strong> 7,285 ÷ 4. The English thousands comma was read as a German decimal separator, so the correct answer became a duplicate of option B and the true answer, 1,821 remainder 1, is absent from the item. Verifiable with a calculator and no German.<br><br><strong>Economics, German.</strong> The correct option has been replaced by a verbatim copy of option A. The correct content is not in the item at all.<br><br><strong>Digital logic, Hindi.</strong> The GAL case from the introduction.<br><br><strong>Physics, Hindi.</strong> "Period" is rendered समय, plain "time", while the stem contains लगने वाला समय, so the correct answer is the exact word in the question. The correct term is आवर्तकाल. The translated stem also says the quantity indicates <em>speed</em>, which the English does not say.<br><br>All four German and Hindi items sit in Global-MMLU's human-translated tier.</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>A false positive</h2><br><br>The detectors misfire, and the misfires are as informative as the hits.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [8]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>show("astronomy/test/25", "hi")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">astronomy/test/25  [astronomy]  answer=D
+  EN  Q: The four big moons of Jupiter are Callisto Europa Ganymede and Io. Which one of them has the smallest distance to Jupiter?
+    EN  a: Callisto
+    EN  b: Europa
+    EN  c: Ganymede
+    EN  d: Io
+  HI  Q: बृहस्पति के चार बड़े चंद्रमा हैं कैलिस्टो, यूरोपा, गैनीमीड और आयो। उनमें से कौन सा बृहस्पति से सबसे कम दूरी पर है?
+    HI  a: कैलिस्टो
+    HI  b: यूरोपा
+    HI  c: गैनीमीड
+    HI  d: आयो
+
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">The detector fires because आयो appears in the stem, but all four moons are named there, so nothing is given away, and the English item discloses identically. This case produced the <code>informative_disclosure</code> filter, which requires exactly one option in the stem.</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Limitations</h2><br><br>The detectors use exact string matching after NFC normalisation. They find a lower bound, not a rate.<br><br>They miss disclosure wherever the stem inflects a word differently from the standalone option, which is most of it in morphologically rich languages, and they miss paraphrase entirely. They cannot see failures that leave the surface strings distinct, such as a mistranslated fact inside the question. In pilot work on an Indic benchmark I found an item where the English named a Pallava king and the Hindi named a Pala king, two dynasties centuries apart; no string-matching rule will ever catch that.<br><br>Counts are therefore not comparable across languages without an estimate of how much each language's detection is missing. Producing that estimate for Hindi, by reading both flagged and unflagged items against a pre-specified coding scheme, is the next stage.</div>
+            </div>
+        </div>
+    </div>
+    <footer class="export-footer">
+        Exported with <a href="https://www.runcell.dev/tool/ipynb-to-html">runcell</a> — convert notebooks to HTML or PDF anytime at runcell.dev.
+    </footer>
+</body>
+</html>
