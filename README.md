@@ -155,6 +155,3 @@ schema `sample_id`, `question`, `option_a` to `option_d`, `answer` as an option
 letter, and optionally `subject` and `subject_category`. Any multiple-choice
 dataset with those fields will work.
 
-## Licence
-
-MIT.
