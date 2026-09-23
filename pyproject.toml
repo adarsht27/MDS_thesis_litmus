@@ -1,0 +1,25 @@
+[project]
+name = "mds-thesis-litmus"
+version = "0.1.0"
+description = "Item-validity detectors for translated LLM benchmarks (MDS thesis pilot)"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.0",
+    "pyarrow>=14.0",
+    "datasets>=2.18",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.uv]
+# itemvalidity/ is imported by adding the repo root to sys.path (that's what
+# run_audit.py and the tests both rely on), not installed as a library, so
+# there is nothing here for uv to build. Without this, `uv sync` tries to
+# build the project as a package and needs a build backend it doesn't have.
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
